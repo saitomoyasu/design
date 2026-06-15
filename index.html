@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!-- saved from url=(0237)file:///Users/mac_al03223272/Library/Application%20Support/Claude/local-agent-mode-sessions/03a56518-55c8-44cd-8321-778edec4a8e5/7cd4f33d-6e2b-43fd-8d4a-24facbb53b6b/local_d6052ed5-e178-4ede-960e-a60f9ecfb22a/outputs/designer_ai_era.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -498,19 +499,19 @@
     <div class="progress-wrap">
       <div class="progress-label">
         <span>進捗</span>
-        <span id="progress-pct">40%</span>
+        <span id="progress-pct">0%</span>
       </div>
       <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill" style="width: 40%;"></div>
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
       </div>
     </div>
     <div id="nav-items">
-      <div class="nav-item done" onclick="goToChapter(0)" id="nav-0">
-        <div class="nav-num">✓</div>
+      <div class="nav-item active" onclick="goToChapter(0)" id="nav-0">
+        <div class="nav-num">1</div>
         <div class="nav-title">AI時代の現実<br><span style="font-size:11px;color:var(--text-muted)">何が変わったのか</span></div>
       </div>
-      <div class="nav-item active done" onclick="goToChapter(1)" id="nav-1">
-        <div class="nav-num">✓</div>
+      <div class="nav-item" onclick="goToChapter(1)" id="nav-1">
+        <div class="nav-num">2</div>
         <div class="nav-title">淘汰されるデザイナー<br><span style="font-size:11px;color:var(--text-muted)">3つの危険なタイプ</span></div>
       </div>
       <div class="nav-item" onclick="goToChapter(2)" id="nav-2">
@@ -532,7 +533,7 @@
   <main class="main">
 
     <!-- Chapter 1 -->
-    <div class="chapter" id="chapter-0">
+    <div class="chapter active" id="chapter-0">
       <div class="chapter-header">
         <div class="chapter-tag">Chapter 01 / 5</div>
         <h1>AI時代の現実<br>── 何が変わったのか</h1>
@@ -614,43 +615,43 @@
         <div class="quiz-title">🧠 理解度チェック</div>
         <div class="quiz-subtitle">Chapter 1 の内容を確認しましょう</div>
 
-        <div class="quiz-question answered" id="q0-0">
+        <div class="quiz-question" id="q0-0">
           <div class="question-text">Q1. AI時代にデザインがボトルネックになっている主な原因は何ですか？</div>
           <div class="options">
-            <button class="option-btn wrong" onclick="answer(0,0,false,this)">デザイナーのスキルが不足しているから</button>
-            <button class="option-btn show-correct" onclick="answer(0,0,true,this)">AIによりエンジニアの開発速度が爆速化し、デザインの供給が追いつかないから</button>
+            <button class="option-btn" onclick="answer(0,0,false,this)">デザイナーのスキルが不足しているから</button>
+            <button class="option-btn" onclick="answer(0,0,true,this)">AIによりエンジニアの開発速度が爆速化し、デザインの供給が追いつかないから</button>
             <button class="option-btn" onclick="answer(0,0,false,this)">クライアントの要求が増えたから</button>
           </div>
           <div class="quiz-feedback correct" id="fb0-0-c">✓ 正解！AIを活用したエンジニアが複数の開発タスクを並行処理できるようになり、相対的にデザインが遅れる状況が生まれています。</div>
-          <div class="quiz-feedback wrong" id="fb0-0-w" style="display: block;">× 不正解。AIによりエンジニアの実装速度が大幅に上がったことで、デザインが追いつかなくなっています。</div>
+          <div class="quiz-feedback wrong" id="fb0-0-w">× 不正解。AIによりエンジニアの実装速度が大幅に上がったことで、デザインが追いつかなくなっています。</div>
         </div>
 
-        <div class="quiz-question answered" id="q0-1">
+        <div class="quiz-question" id="q0-1">
           <div class="question-text">Q2. NN/Gが「State of UX 2026」で指摘した、UIに関する重要な変化は？</div>
           <div class="options">
-            <button class="option-btn wrong" onclick="answer(0,1,false,this)">UIデザインの重要性は今後さらに高まる</button>
+            <button class="option-btn" onclick="answer(0,1,false,this)">UIデザインの重要性は今後さらに高まる</button>
             <button class="option-btn" onclick="answer(0,1,false,this)">UIをFigmaで作る速度を上げることが最優先</button>
-            <button class="option-btn show-correct" onclick="answer(0,1,true,this)">UIはもはや差別化要因ではなく、表層的な設計だけでは競争力を持てない</button>
+            <button class="option-btn" onclick="answer(0,1,true,this)">UIはもはや差別化要因ではなく、表層的な設計だけでは競争力を持てない</button>
           </div>
           <div class="quiz-feedback correct" id="fb0-1-c">✓ 正解！標準化とAI生成ツールにより「それなりのUI」は誰でも作れる時代に。深い思考と判断力こそが価値になります。</div>
-          <div class="quiz-feedback wrong" id="fb0-1-w" style="display: block;">× 不正解。NN/Gは「Surface-level designだけでは競争力を持てない」と警告しています。</div>
+          <div class="quiz-feedback wrong" id="fb0-1-w">× 不正解。NN/Gは「Surface-level designだけでは競争力を持てない」と警告しています。</div>
         </div>
 
-        <div class="quiz-question answered" id="q0-2">
+        <div class="quiz-question" id="q0-2">
           <div class="question-text">Q3. 求人市場の二極化において、回復傾向にあるのはどの層ですか？</div>
           <div class="options">
-            <button class="option-btn wrong" onclick="answer(0,2,false,this)">スクールを出たばかりのジュニアデザイナー</button>
-            <button class="option-btn show-correct" onclick="answer(0,2,true,this)">シニア・ジェネラリスト（戦略的問題解決ができる人）</button>
+            <button class="option-btn" onclick="answer(0,2,false,this)">スクールを出たばかりのジュニアデザイナー</button>
+            <button class="option-btn" onclick="answer(0,2,true,this)">シニア・ジェネラリスト（戦略的問題解決ができる人）</button>
             <button class="option-btn" onclick="answer(0,2,false,this)">UI専門のビジュアルデザイナー</button>
           </div>
           <div class="quiz-feedback correct" id="fb0-2-c">✓ 正解！「成果物を作る人」より「戦略的に問題を解く人」への需要が高まり、シニア・ジェネラリスト職が回復しています。</div>
-          <div class="quiz-feedback wrong" id="fb0-2-w" style="display: block;">× 不正解。ジュニアレベルは依然として厳しく、シニア・ジェネラリスト職が回復傾向にあります。</div>
+          <div class="quiz-feedback wrong" id="fb0-2-w">× 不正解。ジュニアレベルは依然として厳しく、シニア・ジェネラリスト職が回復傾向にあります。</div>
         </div>
 
-        <div class="quiz-score" id="score-0" style="display: block;">
+        <div class="quiz-score" id="score-0">
           <div class="score-num" id="score-num-0">0/3</div>
           <div class="score-label">Chapter 1 スコア</div>
-          <div class="score-msg" id="score-msg-0">もう一度内容を確認してみましょう。</div>
+          <div class="score-msg" id="score-msg-0"></div>
         </div>
       </div>
 
@@ -661,7 +662,7 @@
     </div>
 
     <!-- Chapter 2 -->
-    <div class="chapter active" id="chapter-1">
+    <div class="chapter" id="chapter-1">
       <div class="chapter-header">
         <div class="chapter-tag">Chapter 02 / 5</div>
         <h1>淘汰されるデザイナー<br>── 3つの危険なタイプ</h1>
@@ -735,43 +736,43 @@
         <div class="quiz-title">🧠 理解度チェック</div>
         <div class="quiz-subtitle">Chapter 2 の内容を確認しましょう</div>
 
-        <div class="quiz-question answered" id="q1-0">
+        <div class="quiz-question" id="q1-0">
           <div class="question-text">Q1. 「指示待ち型」デザイナーが淘汰される最大の理由は？</div>
           <div class="options">
             <button class="option-btn" onclick="answer(1,0,false,this)">デザインツールの使い方を知らないから</button>
-            <button class="option-btn wrong" onclick="answer(1,0,false,this)">英語が苦手だから</button>
-            <button class="option-btn show-correct" onclick="answer(1,0,true,this)">AIが同じ「要件を満たすだけ」の仕事を速く安くこなせるから</button>
+            <button class="option-btn" onclick="answer(1,0,false,this)">英語が苦手だから</button>
+            <button class="option-btn" onclick="answer(1,0,true,this)">AIが同じ「要件を満たすだけ」の仕事を速く安くこなせるから</button>
           </div>
           <div class="quiz-feedback correct" id="fb1-0-c">✓ 正解！依頼を実行するだけの仕事はAIに代替されます。「なぜ」を掘り下げ、問題の本質に向き合う姿勢が不可欠です。</div>
-          <div class="quiz-feedback wrong" id="fb1-0-w" style="display: block;">× 不正解。ツールや言語より、「なぜ」を問わない受け身スタンスがAIとの差別化を消してしまいます。</div>
+          <div class="quiz-feedback wrong" id="fb1-0-w">× 不正解。ツールや言語より、「なぜ」を問わない受け身スタンスがAIとの差別化を消してしまいます。</div>
         </div>
 
-        <div class="quiz-question answered" id="q1-1">
+        <div class="quiz-question" id="q1-1">
           <div class="question-text">Q2. AIが最も苦手とする領域はどれですか？</div>
           <div class="options">
-            <button class="option-btn correct" onclick="answer(1,1,true,this)">複雑な人間関係の解像度・相反する要件の調停・信頼の構築</button>
+            <button class="option-btn" onclick="answer(1,1,true,this)">複雑な人間関係の解像度・相反する要件の調停・信頼の構築</button>
             <button class="option-btn" onclick="answer(1,1,false,this)">大量のビジュアルバリエーションの生成</button>
             <button class="option-btn" onclick="answer(1,1,false,this)">コンポーネントの自動配置</button>
           </div>
-          <div class="quiz-feedback correct" id="fb1-1-c" style="display: block;">✓ 正解！AIの苦手領域はすべて「人間臭い」もの。関係性・文脈・感情・意図に関わることです。</div>
+          <div class="quiz-feedback correct" id="fb1-1-c">✓ 正解！AIの苦手領域はすべて「人間臭い」もの。関係性・文脈・感情・意図に関わることです。</div>
           <div class="quiz-feedback wrong" id="fb1-1-w">× 不正解。ビジュアル生成や自動配置はAIの得意領域。苦手なのは人間関係・文脈・感情的な側面です。</div>
         </div>
 
-        <div class="quiz-question answered" id="q1-2">
+        <div class="quiz-question" id="q1-2">
           <div class="question-text">Q3. PdMがAIで作ったモックとデザイナーが作ったデザインの根本的な違いは？</div>
           <div class="options">
             <button class="option-btn" onclick="answer(1,2,false,this)">デザイナーの方がカラーパレットがきれいだった</button>
-            <button class="option-btn correct" onclick="answer(1,2,true,this)">PdMは仕様・機能を起点に、デザイナーはユーザーのメンタルモデルを起点に考えた</button>
+            <button class="option-btn" onclick="answer(1,2,true,this)">PdMは仕様・機能を起点に、デザイナーはユーザーのメンタルモデルを起点に考えた</button>
             <button class="option-btn" onclick="answer(1,2,false,this)">デザイナーの方がアニメーションを多く使った</button>
           </div>
-          <div class="quiz-feedback correct" id="fb1-2-c" style="display: block;">✓ 正解！「システムを隠蔽し、ユーザーのメンタルモデルに合わせる」という発想がデザイナーの本質的な介在価値です。</div>
+          <div class="quiz-feedback correct" id="fb1-2-c">✓ 正解！「システムを隠蔽し、ユーザーのメンタルモデルに合わせる」という発想がデザイナーの本質的な介在価値です。</div>
           <div class="quiz-feedback wrong" id="fb1-2-w">× 不正解。ビジュアルではなく「誰の視点から設計するか」が根本的な差です。</div>
         </div>
 
-        <div class="quiz-score" id="score-1" style="display: block;">
-          <div class="score-num" id="score-num-1">2/3</div>
+        <div class="quiz-score" id="score-1">
+          <div class="score-num" id="score-num-1">0/3</div>
           <div class="score-label">Chapter 2 スコア</div>
-          <div class="score-msg" id="score-msg-1">いい感じです！もう少し掘り下げると完璧です。</div>
+          <div class="score-msg" id="score-msg-1"></div>
         </div>
       </div>
 
@@ -1132,27 +1133,7 @@
         <h2>学習完了おめでとうございます！</h2>
         <p>全5章を通じて、AI時代のデザイナーが直面する現実と、生き残り・進化するための具体的な方向性を学びました。</p>
 
-        <div class="final-score-grid" id="final-score-grid">
-        <div class="final-score-item">
-          <div class="fsi-chapter">Ch.1</div>
-          <div class="fsi-score ok">0/3</div>
-        </div>
-        <div class="final-score-item">
-          <div class="fsi-chapter">Ch.2</div>
-          <div class="fsi-score ok">0/3</div>
-        </div>
-        <div class="final-score-item">
-          <div class="fsi-chapter">Ch.3</div>
-          <div class="fsi-score ok">0/3</div>
-        </div>
-        <div class="final-score-item">
-          <div class="fsi-chapter">Ch.4</div>
-          <div class="fsi-score ok">0/3</div>
-        </div>
-        <div class="final-score-item">
-          <div class="fsi-chapter">Ch.5</div>
-          <div class="fsi-score ok">0/3</div>
-        </div></div>
+        <div class="final-score-grid" id="final-score-grid"></div>
 
         <div class="highlight-box purple" style="text-align:left;max-width:500px;margin:0 auto 24px;">
           <strong>あなたへのメッセージ：</strong><br>
