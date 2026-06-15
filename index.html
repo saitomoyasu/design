@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<!-- saved from url=(0237)file:///Users/mac_al03223272/Library/Application%20Support/Claude/local-agent-mode-sessions/03a56518-55c8-44cd-8321-778edec4a8e5/7cd4f33d-6e2b-43fd-8d4a-24facbb53b6b/local_d6052ed5-e178-4ede-960e-a60f9ecfb22a/outputs/designer_ai_era.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI時代のデザイナービジョン</title>
+<style>
+  :root {
+    --bg: #0f0f13;
+    --surface: #1a1a24;
+    --surface2: #22222f;
+    --accent: #7c6ff7;
+    --accent2: #4fc3f7;
+    --accent3: #f97316;
+    --success: #4ade80;
+    --danger: #f87171;
+    --text: #e2e2f0;
+    --text-muted: #8888aa;
+    --border: #2e2e42;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* ── LAYOUT ── */
+  .app { display: flex; min-height: 100vh; }
+
+  /* Sidebar */
+  .sidebar {
+    width: 260px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 28px 0;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+    z-index: 100;
+    transition: transform .3s ease;
+  }
+  .sidebar-logo {
+    padding: 0 24px 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .sidebar-logo .tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .sidebar-logo h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* Progress bar */
+  .progress-wrap { padding: 0 24px 20px; }
+  .progress-label { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .progress-bar { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width .4s ease; }
+
+  /* Nav items */
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-muted);
+    transition: all .2s;
+    border-left: 3px solid transparent;
+    position: relative;
+  }
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { color: var(--text); background: var(--surface2); border-left-color: var(--accent); }
+  .nav-item.done .nav-num { background: var(--success); color: #000; }
+  .nav-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .nav-item.active .nav-num { background: var(--accent); color: #fff; }
+  .nav-title { flex: 1; line-height: 1.3; }
+
+  /* Main */
+  .main { margin-left: 260px; flex: 1; padding: 40px; max-width: 900px; }
+
+  /* Chapter header */
+  .chapter-header {
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .chapter-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .chapter-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .chapter-lead {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 600px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+  .card p + p { margin-top: 10px; }
+
+  /* Section title */
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* Icon badges */
+  .icon { font-size: 20px; }
+
+  /* Highlight boxes */
+  .highlight-box {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .highlight-box.blue { background: rgba(79,195,247,.1); border: 1px solid rgba(79,195,247,.25); }
+  .highlight-box.purple { background: rgba(124,111,247,.1); border: 1px solid rgba(124,111,247,.25); }
+  .highlight-box.orange { background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.25); }
+  .highlight-box.green { background: rgba(74,222,128,.1); border: 1px solid rgba(74,222,128,.25); }
+  .highlight-box strong { color: var(--text); }
+
+  /* Comparison grid */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .compare-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .compare-box h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .compare-box ul { list-style: none; }
+  .compare-box ul li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 5px 0;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .compare-box ul li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+
+  /* Skill cards grid */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .skill-card .skill-num {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .skill-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .skill-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* Career path */
+  .career-path {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .career-icon { font-size: 32px; flex-shrink: 0; }
+  .career-path h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .career-path p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .career-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    background: rgba(124,111,247,.2);
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* Diagram */
+  .diagram {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .diagram svg { max-width: 100%; }
+
+  /* Type cards (淘汰タイプ) */
+  .type-danger {
+    background: rgba(248,113,113,.08);
+    border: 1px solid rgba(248,113,113,.25);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+  .type-danger h4 { font-size: 14px; font-weight: 700; color: #f87171; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .type-danger p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* Quiz section */
+  .quiz-section {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-top: 40px;
+  }
+  .quiz-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .quiz-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
+  .quiz-question {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .quiz-question.answered { opacity: .7; pointer-events: none; }
+  .question-text { font-size: 14px; font-weight: 600; margin-bottom: 14px; line-height: 1.6; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .18s;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+  .option-btn:hover { border-color: var(--accent); background: rgba(124,111,247,.1); }
+  .option-btn.correct { border-color: var(--success); background: rgba(74,222,128,.12); color: var(--success); pointer-events: none; }
+  .option-btn.wrong { border-color: var(--danger); background: rgba(248,113,113,.12); color: var(--danger); pointer-events: none; }
+  .option-btn.show-correct { border-color: var(--success); background: rgba(74,222,128,.06); color: var(--success); pointer-events: none; }
+  .quiz-feedback {
+    font-size: 13px;
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    display: none;
+    line-height: 1.6;
+  }
+  .quiz-feedback.correct { background: rgba(74,222,128,.1); color: var(--success); border: 1px solid rgba(74,222,128,.2); }
+  .quiz-feedback.wrong { background: rgba(248,113,113,.1); color: #f87171; border: 1px solid rgba(248,113,113,.2); }
+
+  /* Quiz score */
+  .quiz-score {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    margin-top: 16px;
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .score-num { font-size: 40px; font-weight: 800; color: var(--accent); }
+  .score-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+  .score-msg { font-size: 14px; margin-top: 12px; color: var(--text); }
+
+  /* Navigation buttons */
+  .nav-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .18s;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #9588fa; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--text-muted); }
+  .btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+
+  /* Chapter sections hidden */
+  .chapter { display: none; }
+  .chapter.active { display: block; }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-num { font-size: 28px; font-weight: 800; color: var(--accent); }
+  .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+
+  /* Sandwich diagram */
+  .sandwich {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px 0;
+  }
+  .s-layer {
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .s-top { background: rgba(124,111,247,.2); border: 1px solid rgba(124,111,247,.4); color: var(--accent); }
+  .s-mid { background: rgba(136,136,170,.1); border: 1px solid var(--border); color: var(--text-muted); font-weight: 400; }
+  .s-bot { background: rgba(124,111,247,.2); border: 1px solid rgba(124,111,247,.4); color: var(--accent); }
+
+  /* Completion screen */
+  .completion {
+    text-align: center;
+    padding: 60px 40px;
+  }
+  .completion-badge {
+    font-size: 72px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .completion h2 { font-size: 26px; font-weight: 800; margin-bottom: 10px; }
+  .completion p { color: var(--text-muted); font-size: 15px; max-width: 480px; margin: 0 auto 30px; line-height: 1.8; }
+  .final-score-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+  .final-score-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .fsi-chapter { font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
+  .fsi-score { font-size: 18px; font-weight: 800; }
+  .fsi-score.perfect { color: var(--success); }
+  .fsi-score.good { color: var(--accent); }
+  .fsi-score.ok { color: var(--accent3); }
+
+  /* References */
+  .ref-list {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+  .ref-list a { color: var(--accent2); text-decoration: none; }
+  .ref-list a:hover { text-decoration: underline; }
+
+  /* Mobile hamburger */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 16px; left: 16px;
+    z-index: 200;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--text);
+  }
+
+  @media (max-width: 768px) {
+    .hamburger { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; }
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; padding: 24px 16px; padding-top: 60px; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .skill-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .final-score-grid { grid-template-columns: repeat(3, 1fr); }
+    .chapter-header h1 { font-size: 22px; }
+  }
+
+  /* Subtle pulse for active nav */
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.6; } }
+</style>
+</head>
+<body>
+
+<button class="hamburger" onclick="toggleSidebar()" id="hamburger">☰</button>
+
+<div class="app">
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="tag">Learning Module</div>
+      <h2>AI時代の<br>デザイナービジョン</h2>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>進捗</span>
+        <span id="progress-pct">40%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 40%;"></div>
+      </div>
+    </div>
+    <div id="nav-items">
+      <div class="nav-item done" onclick="goToChapter(0)" id="nav-0">
+        <div class="nav-num">✓</div>
+        <div class="nav-title">AI時代の現実<br><span style="font-size:11px;color:var(--text-muted)">何が変わったのか</span></div>
+      </div>
+      <div class="nav-item active done" onclick="goToChapter(1)" id="nav-1">
+        <div class="nav-num">✓</div>
+        <div class="nav-title">淘汰されるデザイナー<br><span style="font-size:11px;color:var(--text-muted)">3つの危険なタイプ</span></div>
+      </div>
+      <div class="nav-item" onclick="goToChapter(2)" id="nav-2">
+        <div class="nav-num">3</div>
+        <div class="nav-title">残る本質的な力<br><span style="font-size:11px;color:var(--text-muted)">デザイナーの真価</span></div>
+      </div>
+      <div class="nav-item" onclick="goToChapter(3)" id="nav-3">
+        <div class="nav-num">4</div>
+        <div class="nav-title">進化のスキルセット<br><span style="font-size:11px;color:var(--text-muted)">5つの力を磨く</span></div>
+      </div>
+      <div class="nav-item" onclick="goToChapter(4)" id="nav-4">
+        <div class="nav-num">5</div>
+        <div class="nav-title">キャリアパスの再設計<br><span style="font-size:11px;color:var(--text-muted)">3つの進化の方向</span></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- Chapter 1 -->
+    <div class="chapter" id="chapter-0">
+      <div class="chapter-header">
+        <div class="chapter-tag">Chapter 01 / 5</div>
+        <h1>AI時代の現実<br>── 何が変わったのか</h1>
+        <p class="chapter-lead">「AIがデザイナーの仕事を奪う」という議論より先に、現場で起きている実際の変化を把握しておく必要がある。</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num">76%</div>
+          <div class="stat-label">デザイナーがAI活用を<br>前提に仕事をしている<br><span style="font-size:10px">(99designs 2024調査)</span></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3〜4x</div>
+          <div class="stat-label">AIを活用することで<br>1スプリント内の<br>検証サイクルが増加</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">64億$</div>
+          <div class="stat-label">AI時代でもデザインの<br>価値は高まっている<br>（著名デザイン会社の評価額）</div>
+        </div>
+      </div>
+
+      <h2 class="section-title">開発速度の爆速化が起きている</h2>
+
+      <div class="card">
+        <h3><span class="icon">⚡</span> エンジニアとAIの協業による変化</h3>
+        <p>AIを活用したコーディングによって、エンジニア一人が複数の開発タスクを並行して進められるようになった。これまで複数人チームで1週間かけていた作業が、1人のエンジニアとAIで数日で完了する事例も出てきている。</p>
+        <p>その結果、<strong>デザインがボトルネックになる</strong>という現象が起きている。「朝の打ち合わせで議論したデザインが、昼には実装が上がってくる」という状況は、デザイナーに今まで以上のスピードと判断力を要求する。</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">🔄</span> 開発プロセス自体の変容</h3>
+        <p>従来のスクラム開発（1〜2週間スプリント）すら「遅い」と感じる場面が増えてきた。AIが不確実性を高速に潰せる環境では、<strong>「まず動くものを作ってお客様に当てに行く」</strong>という高速開発スタイルが台頭している。</p>
+        <p>これはマインドの変化でもある。エンジニアだけでなく、デザイナーも「意思決定と検証を極限まで速くする」能力が問われている。</p>
+      </div>
+
+      <h2 class="section-title">UIはもはや差別化要因ではない</h2>
+
+      <div class="compare-grid">
+        <div class="compare-box">
+          <h4>🕰️ これまでのデザイン</h4>
+          <ul>
+            <li>UIを精緻に作ることが差別化</li>
+            <li>デザイナーが先行して全体を設計</li>
+            <li>Figmaプロトタイプを起点に開発</li>
+            <li>「街の都市計画」のような固定設計</li>
+          </ul>
+        </div>
+        <div class="compare-box">
+          <h4>⚡ AI時代のデザイン</h4>
+          <ul>
+            <li>誰でも"それなりのUI"が作れる</li>
+            <li>エンジニアが初期UIをAIで生成</li>
+            <li>デザイナーは最初と最後を担う</li>
+            <li>文脈に応じて変わる「動的な体験」設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight-box purple">
+        <strong>NN/G「State of UX 2026」より：</strong><br>
+        「UIは依然として重要だが、差別化要因ではなくなりつつある。デザインシステムの標準化とAI生成ツールの進化により、見た目が整ったUIは誰でも作れる時代になった。Surface-level designだけでは、もはや競争力を持てない。」
+      </div>
+
+      <h2 class="section-title">求人市場で起きていること</h2>
+
+      <div class="card">
+        <h3><span class="icon">📊</span> 市場の二極化</h3>
+        <p>米国の求人データでは、デザイナー求人が2022年以降に急減している（富士山型のグラフ）。特にジュニア・エントリーレベルは競争が激しく、別の州から仕事を探しに来る学生も出ている。</p>
+        <p>一方で<strong>シニア・ジェネラリスト職は回復傾向</strong>にある。「成果物を作る人」ではなく「戦略的に問題を解く人」への需要が高まっている。組織はより少人数に、より多くの役割を求めるようになる。</p>
+      </div>
+
+      <div class="highlight-box blue">
+        <strong>重要な認識転換：</strong><br>
+        「AIを使うか否か」ではなく、<strong>「どう使いこなすか」が競争軸</strong>になっている。AIに置き去りにされるのではなく、AIを使いこなすライバルに置き換えられるのだ。
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section" id="quiz-0">
+        <div class="quiz-title">🧠 理解度チェック</div>
+        <div class="quiz-subtitle">Chapter 1 の内容を確認しましょう</div>
+
+        <div class="quiz-question answered" id="q0-0">
+          <div class="question-text">Q1. AI時代にデザインがボトルネックになっている主な原因は何ですか？</div>
+          <div class="options">
+            <button class="option-btn wrong" onclick="answer(0,0,false,this)">デザイナーのスキルが不足しているから</button>
+            <button class="option-btn show-correct" onclick="answer(0,0,true,this)">AIによりエンジニアの開発速度が爆速化し、デザインの供給が追いつかないから</button>
+            <button class="option-btn" onclick="answer(0,0,false,this)">クライアントの要求が増えたから</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb0-0-c">✓ 正解！AIを活用したエンジニアが複数の開発タスクを並行処理できるようになり、相対的にデザインが遅れる状況が生まれています。</div>
+          <div class="quiz-feedback wrong" id="fb0-0-w" style="display: block;">× 不正解。AIによりエンジニアの実装速度が大幅に上がったことで、デザインが追いつかなくなっています。</div>
+        </div>
+
+        <div class="quiz-question answered" id="q0-1">
+          <div class="question-text">Q2. NN/Gが「State of UX 2026」で指摘した、UIに関する重要な変化は？</div>
+          <div class="options">
+            <button class="option-btn wrong" onclick="answer(0,1,false,this)">UIデザインの重要性は今後さらに高まる</button>
+            <button class="option-btn" onclick="answer(0,1,false,this)">UIをFigmaで作る速度を上げることが最優先</button>
+            <button class="option-btn show-correct" onclick="answer(0,1,true,this)">UIはもはや差別化要因ではなく、表層的な設計だけでは競争力を持てない</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb0-1-c">✓ 正解！標準化とAI生成ツールにより「それなりのUI」は誰でも作れる時代に。深い思考と判断力こそが価値になります。</div>
+          <div class="quiz-feedback wrong" id="fb0-1-w" style="display: block;">× 不正解。NN/Gは「Surface-level designだけでは競争力を持てない」と警告しています。</div>
+        </div>
+
+        <div class="quiz-question answered" id="q0-2">
+          <div class="question-text">Q3. 求人市場の二極化において、回復傾向にあるのはどの層ですか？</div>
+          <div class="options">
+            <button class="option-btn wrong" onclick="answer(0,2,false,this)">スクールを出たばかりのジュニアデザイナー</button>
+            <button class="option-btn show-correct" onclick="answer(0,2,true,this)">シニア・ジェネラリスト（戦略的問題解決ができる人）</button>
+            <button class="option-btn" onclick="answer(0,2,false,this)">UI専門のビジュアルデザイナー</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb0-2-c">✓ 正解！「成果物を作る人」より「戦略的に問題を解く人」への需要が高まり、シニア・ジェネラリスト職が回復しています。</div>
+          <div class="quiz-feedback wrong" id="fb0-2-w" style="display: block;">× 不正解。ジュニアレベルは依然として厳しく、シニア・ジェネラリスト職が回復傾向にあります。</div>
+        </div>
+
+        <div class="quiz-score" id="score-0" style="display: block;">
+          <div class="score-num" id="score-num-0">0/3</div>
+          <div class="score-label">Chapter 1 スコア</div>
+          <div class="score-msg" id="score-msg-0">もう一度内容を確認してみましょう。</div>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-ghost" disabled="">← 前へ</button>
+        <button class="btn btn-primary" onclick="goToChapter(1)">次のChapterへ →</button>
+      </div>
+    </div>
+
+    <!-- Chapter 2 -->
+    <div class="chapter active" id="chapter-1">
+      <div class="chapter-header">
+        <div class="chapter-tag">Chapter 02 / 5</div>
+        <h1>淘汰されるデザイナー<br>── 3つの危険なタイプ</h1>
+        <p class="chapter-lead">AIが「速く・安く・それなりに良い」アウトプットを量産できる今、同じレベルの仕事しかしていないなら代替は時間の問題だ。</p>
+      </div>
+
+      <h2 class="section-title">消えていく3つのデザイナータイプ</h2>
+
+      <div class="type-danger">
+        <h4>⚠️ タイプ1：指示待ち型</h4>
+        <p>依頼された内容をそのまま実行し、「なぜこれを作るのか」「本当に解くべき問題は何か」を掘り下げない。要件を満たすことに集中し、<strong>問題の本質に向き合わない</strong>スタンス。AIに対してプロンプトを投げれば同じものが出てくる。</p>
+      </div>
+
+      <div class="type-danger">
+        <h4>⚠️ タイプ2：テンプレ依存型</h4>
+        <p>汎用テンプレートやデザインシステムのコンポーネントを当てはめるだけで、目の前のユーザーの文脈や感情を無視する。「それっぽいもの」は作れるが、<strong>「なぜこのデザインなのか」を説明できない</strong>。AIの方が多くのパターンを知っている。</p>
+      </div>
+
+      <div class="type-danger">
+        <h4>⚠️ タイプ3：課題回避型</h4>
+        <p>デザイン「する」ことだけにフォーカスし、解決すべきビジネス・ユーザー課題に向き合わない。アウトプット（見た目）を作ることを目的化し、<strong>アウトカム（成果）を考えない</strong>。AIはすでに積極的にクリエイティブな提案をしてくる。</p>
+      </div>
+
+      <div class="highlight-box orange">
+        <strong>本質的な問い：</strong><br>
+        「あなたの仕事はAIに"速く・安く・それなりに"置き換えられるか？」<br>もしYesなら、差し替えは時間の問題だ。
+      </div>
+
+      <h2 class="section-title">AIの得意・不得意を理解する</h2>
+
+      <div class="compare-grid">
+        <div class="compare-box">
+          <h4 style="color:var(--accent2)">🤖 AIが得意なこと</h4>
+          <ul>
+            <li>見た目の生成・微調整</li>
+            <li>ラピッドプロトタイピング</li>
+            <li>単純な反復・量産作業</li>
+            <li>既存パターンの再利用</li>
+            <li>コードの自動生成</li>
+          </ul>
+        </div>
+        <div class="compare-box">
+          <h4 style="color:var(--accent)">🧠 AIが苦手なこと</h4>
+          <ul>
+            <li>複雑な人間関係の解像度</li>
+            <li>相反する要件の調停</li>
+            <li>ビジネスインパクトの優先度付け</li>
+            <li>不確実な場での信頼構築</li>
+            <li>「なぜ」を説明し、説得する力</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">💡</span> AIが苦手なことは、すべて「人間臭い」</h3>
+        <p>AIの苦手領域を見ると、すべてに共通点がある。それは<strong>人間との関係性・文脈・感情・意図</strong>に関わることだ。デザインスキルそのものではなく、ソフトスキル領域が価値を持ち続ける。</p>
+        <p>裏を返せば、「人間だからこそ価値を発揮できること」を磨くことが、AI時代の生存戦略の第一歩になる。</p>
+      </div>
+
+      <h2 class="section-title">PdMがAIで作ったモックの事例</h2>
+
+      <div class="card">
+        <h3><span class="icon">🔍</span> ユーザー起点 vs 事業起点の違い</h3>
+        <p>実際の開発現場で、PdMが生成AIを使って「3ステップの入力画面」を作成した。機能要件を満たしていたが、<strong>システム構造がそのままUIに反映されており</strong>、使いやすさが犠牲になっていた。</p>
+        <p>デザイナーが「カンバン風のレイアウト」に再設計したところ、PdMから絶賛された。「こういうメンタルモデルに基づく引き出しは私には無い」という言葉が返ってきた。</p>
+        <p style="margin-top:10px;"><strong>PdMや事業責任者は「事業の要件を満たす仕様」を起点に考える。</strong><br>デザイナーは「ユーザーを起点においたメンタルモデル」から考える。このグラデーションが介在価値になる。</p>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section" id="quiz-1">
+        <div class="quiz-title">🧠 理解度チェック</div>
+        <div class="quiz-subtitle">Chapter 2 の内容を確認しましょう</div>
+
+        <div class="quiz-question answered" id="q1-0">
+          <div class="question-text">Q1. 「指示待ち型」デザイナーが淘汰される最大の理由は？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(1,0,false,this)">デザインツールの使い方を知らないから</button>
+            <button class="option-btn wrong" onclick="answer(1,0,false,this)">英語が苦手だから</button>
+            <button class="option-btn show-correct" onclick="answer(1,0,true,this)">AIが同じ「要件を満たすだけ」の仕事を速く安くこなせるから</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb1-0-c">✓ 正解！依頼を実行するだけの仕事はAIに代替されます。「なぜ」を掘り下げ、問題の本質に向き合う姿勢が不可欠です。</div>
+          <div class="quiz-feedback wrong" id="fb1-0-w" style="display: block;">× 不正解。ツールや言語より、「なぜ」を問わない受け身スタンスがAIとの差別化を消してしまいます。</div>
+        </div>
+
+        <div class="quiz-question answered" id="q1-1">
+          <div class="question-text">Q2. AIが最も苦手とする領域はどれですか？</div>
+          <div class="options">
+            <button class="option-btn correct" onclick="answer(1,1,true,this)">複雑な人間関係の解像度・相反する要件の調停・信頼の構築</button>
+            <button class="option-btn" onclick="answer(1,1,false,this)">大量のビジュアルバリエーションの生成</button>
+            <button class="option-btn" onclick="answer(1,1,false,this)">コンポーネントの自動配置</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb1-1-c" style="display: block;">✓ 正解！AIの苦手領域はすべて「人間臭い」もの。関係性・文脈・感情・意図に関わることです。</div>
+          <div class="quiz-feedback wrong" id="fb1-1-w">× 不正解。ビジュアル生成や自動配置はAIの得意領域。苦手なのは人間関係・文脈・感情的な側面です。</div>
+        </div>
+
+        <div class="quiz-question answered" id="q1-2">
+          <div class="question-text">Q3. PdMがAIで作ったモックとデザイナーが作ったデザインの根本的な違いは？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(1,2,false,this)">デザイナーの方がカラーパレットがきれいだった</button>
+            <button class="option-btn correct" onclick="answer(1,2,true,this)">PdMは仕様・機能を起点に、デザイナーはユーザーのメンタルモデルを起点に考えた</button>
+            <button class="option-btn" onclick="answer(1,2,false,this)">デザイナーの方がアニメーションを多く使った</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb1-2-c" style="display: block;">✓ 正解！「システムを隠蔽し、ユーザーのメンタルモデルに合わせる」という発想がデザイナーの本質的な介在価値です。</div>
+          <div class="quiz-feedback wrong" id="fb1-2-w">× 不正解。ビジュアルではなく「誰の視点から設計するか」が根本的な差です。</div>
+        </div>
+
+        <div class="quiz-score" id="score-1" style="display: block;">
+          <div class="score-num" id="score-num-1">2/3</div>
+          <div class="score-label">Chapter 2 スコア</div>
+          <div class="score-msg" id="score-msg-1">いい感じです！もう少し掘り下げると完璧です。</div>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-ghost" onclick="goToChapter(0)">← 前へ</button>
+        <button class="btn btn-primary" onclick="goToChapter(2)">次のChapterへ →</button>
+      </div>
+    </div>
+
+    <!-- Chapter 3 -->
+    <div class="chapter" id="chapter-2">
+      <div class="chapter-header">
+        <div class="chapter-tag">Chapter 03 / 5</div>
+        <h1>残る本質的な力<br>── デザイナーの真価</h1>
+        <p class="chapter-lead">作るプロセスがコモディティ化する中で、何が残るのか。現場の実践から見えてくるデザイナーの「本質的な介在価値」を整理する。</p>
+      </div>
+
+      <h2 class="section-title">サンドイッチ型の役割変化</h2>
+
+      <div class="card">
+        <h3><span class="icon">🥪</span> デザイナーの役割が「最初と最後」になった</h3>
+        <p>AI駆動の開発では、エンジニアが初期のUI（30〜70点クオリティ）をAIで高速に生成できるようになった。その結果、デザイナーの仕事は<strong>「最初の体験設計」と「最後の磨き込み」</strong>という「サンドイッチ型」に変化した。</p>
+      </div>
+
+      <div class="sandwich">
+        <div class="s-layer s-top">🎯 フェーズ1：デザイナーが主導<br><small>体験の上位設計・オブジェクトの関係性定義・ユースケース整理</small></div>
+        <div class="s-layer s-mid">⚙️ 中盤：エンジニア＋AIが主導<br><small>初期UIの高速生成・「この機能に価値があるか」の検証</small></div>
+        <div class="s-layer s-bot">✨ フェーズ2：デザイナーが主導<br><small>磨き込み・体験の一貫性・認知の整理・ユーザーへの説明可能性</small></div>
+      </div>
+
+      <div class="highlight-box green">
+        <strong>なぜサンドイッチ型が合理的なのか：</strong><br>
+        「この機能に価値があるか」と「この体験は使いやすいか」を別タイミングで検証できるようになった。AIの不確実性（LLMの出力が予測しにくい）に対応するためにも、まず動かして確認する順番が自然になっている。
+      </div>
+
+      <h2 class="section-title">審美眼・目利き力</h2>
+
+      <div class="card">
+        <h3><span class="icon">👁️</span> 無数の選択肢の中から「正しい一つ」を選ぶ力</h3>
+        <p>AIが無限のバリエーションを生成できる時代になったからこそ、<strong>「どれを選ぶか」の判断力と審美眼</strong>が重要になる。表層的に「それらしいデザイン」が量産できても、事業や会社のブランドとしてどのスタンスを取るべきかを示せる人は経営層にも少ない。</p>
+        <p>ブランドコミュニケーションや体験設計における審美眼は、その経験を多量に積んでいるデザイナーにしか育たない。</p>
+      </div>
+
+      <h2 class="section-title">構造を見抜き、抽象化する力</h2>
+
+      <div class="card">
+        <h3><span class="icon">🔬</span> 問題を因数分解し、本質に再設計する</h3>
+        <p>現場のある事例では、機能の積み増しでUIが崩壊したプロダクトを、デザイナーが「本質的に重要な3つの要素」に因数分解した。経営者から「その瞬間、一気に視界が開けた」と言われた再設計だった。</p>
+        <p>このプロセスは単純だ。「既存の機能を全部洗い出し、それぞれがなぜ必要なのかのユースケースを整理する」。複雑に見えても、「なぜこれが必要か」を辿ると、同じ課題へのアプローチが重複していることがわかる。</p>
+      </div>
+
+      <div class="highlight-box blue">
+        <strong>NN/G より：</strong><br>
+        「AIには容易に自動化できないものがある。それは<em>Curated taste（磨かれた審美眼）</em>、<em>research-informed contextual understanding（調査に基づく文脈理解）</em>、<em>critical thinking（批判的思考）</em>、<em>careful judgment（慎重な判断）</em>だ。」
+      </div>
+
+      <h2 class="section-title">「なぜ」を説明できる力</h2>
+
+      <div class="card">
+        <h3><span class="icon">💬</span> 意図を言語化し、相手を動かす力</h3>
+        <p>AIで作ったデザインは「なぜそのようにしたか」を説明できない。現場でクライアントに「これはなぜこのレイアウトにしたの？」と問われたとき、根拠を持って答えられるかどうかが、実務で通用するかの分岐点になる。</p>
+        <p><strong>選び、意味を与え、説明できる力。</strong>これはデザインの理論（構成・配色・タイポグラフィ・視線誘導）の理解の上に成り立つ、人間にしかできない仕事だ。</p>
+      </div>
+
+      <h2 class="section-title">AIプロダクトは「動的な街」を設計する</h2>
+
+      <div class="card">
+        <h3><span class="icon">🏙️</span> 静的設計から流動的な体験設計へ</h3>
+        <p>従来のプロダクト設計は「街の都市計画」のようなものだった。ここに病院、あそこに学校、この道は東西に伸びる、という固定された構造を先に決めた。</p>
+        <p>AIプロダクトは違う。ユーザーやコンテキストによってその場その場で形が変わる「動的な街」だ。オブジェクトが静的ではなく流動的になる。</p>
+        <p>これに対応するには、<strong>「業務理解 → 抽象化 → 体験としてプロダクトに落とす」</strong>という翻訳作業が必要になる。これこそがAI時代におけるデザイナーの中核業務だ。</p>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section" id="quiz-2">
+        <div class="quiz-title">🧠 理解度チェック</div>
+        <div class="quiz-subtitle">Chapter 3 の内容を確認しましょう</div>
+
+        <div class="quiz-question" id="q2-0">
+          <div class="question-text">Q1. 「サンドイッチ型」の役割変化において、デザイナーが担う2つのフェーズはどれですか？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(2,0,true,this)">①体験の上位設計・オブジェクト定義 と ②UIの磨き込み・体験の一貫性確保</button>
+            <button class="option-btn" onclick="answer(2,0,false,this)">①コードを書くフェーズ と ②マーケティングのフェーズ</button>
+            <button class="option-btn" onclick="answer(2,0,false,this)">①スプリント計画 と ②リリース後のKPI計測</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb2-0-c">✓ 正解！「最初の設計」と「最後の磨き込み」がデザイナーの担う役割。中間の初期UI生成はエンジニア＋AIが担います。</div>
+          <div class="quiz-feedback wrong" id="fb2-0-w">× 不正解。デザイナーは「最初の体験設計」と「最後の磨き込み」でUXの質を担保します。</div>
+        </div>
+
+        <div class="quiz-question" id="q2-1">
+          <div class="question-text">Q2. NN/Gが「AIには代替できない」と指摘したデザイナーの能力はどれですか？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(2,1,false,this)">Figmaの操作速度とプロトタイプの精度</button>
+            <button class="option-btn" onclick="answer(2,1,false,this)">AIツールを使ったビジュアル生成の量</button>
+            <button class="option-btn" onclick="answer(2,1,true,this)">磨かれた審美眼・文脈理解・批判的思考・慎重な判断</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb2-1-c">✓ 正解！NN/Gはcurated taste（磨かれた審美眼）とcontextual understanding（文脈理解）こそが自動化されない価値と述べています。</div>
+          <div class="quiz-feedback wrong" id="fb2-1-w">× 不正解。ツール操作や生成量はAIが得意な領域です。審美眼・文脈理解・批判的思考が人間の強みです。</div>
+        </div>
+
+        <div class="quiz-question" id="q2-2">
+          <div class="question-text">Q3. AIプロダクトの設計が従来と根本的に異なる理由は？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(2,2,false,this)">画面の数が圧倒的に多くなったから</button>
+            <button class="option-btn" onclick="answer(2,2,true,this)">ユーザーやコンテキストに応じて体験が動的に変わり、構造を固定できないから</button>
+            <button class="option-btn" onclick="answer(2,2,false,this)">海外のユーザーも対象になるから</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb2-2-c">✓ 正解！AIプロダクトは「動的な街」。静的な都市計画的発想ではなく、流動的な体験を設計する新しいアプローチが必要です。</div>
+          <div class="quiz-feedback wrong" id="fb2-2-w">× 不正解。AIプロダクトはユーザーやコンテキストによって体験が変わる「動的な設計」が求められます。</div>
+        </div>
+
+        <div class="quiz-score" id="score-2">
+          <div class="score-num" id="score-num-2">0/3</div>
+          <div class="score-label">Chapter 3 スコア</div>
+          <div class="score-msg" id="score-msg-2"></div>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-ghost" onclick="goToChapter(1)">← 前へ</button>
+        <button class="btn btn-primary" onclick="goToChapter(3)">次のChapterへ →</button>
+      </div>
+    </div>
+
+    <!-- Chapter 4 -->
+    <div class="chapter" id="chapter-3">
+      <div class="chapter-header">
+        <div class="chapter-tag">Chapter 04 / 5</div>
+        <h1>進化のスキルセット<br>── 5つの力を磨く</h1>
+        <p class="chapter-lead">AI時代を生き抜くデザイナーが具体的に身につけるべき5つのスキルセット。いずれも「人間とAIのコラボ」を前提に設計されている。</p>
+      </div>
+
+      <h2 class="section-title">AI時代のデザイナーに必要な5つのスキル</h2>
+
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-num">Skill 01</div>
+          <h4>🎯 Context Framing</h4>
+          <p>問題の背景を言語化し、「何を解くべきか」を定義する力。PdMが仕様を言われた通りに実装してもらうのではなく、デザイナー自身が「そもそもの課題は何か」を問い直すことで、AIにはできない上流設計を担う。</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-num">Skill 02</div>
+          <h4>🤝 Facilitation</h4>
+          <p>部門横断の利害を調整し、意思決定を前に進める力。AIが個々のタスクを高速化する中で、人と人の間に立って合意を形成し、プロダクトの方向性を揃える役割はより重要になる。</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-num">Skill 03</div>
+          <h4>⚡ AI-Augmented Prototyping</h4>
+          <p>AIで量を捌きながら、人間の洞察で質を担保するコラボ型プロトタイピング。AIに初期モックを作らせ、デザイナーがそれを批評・改善するサイクルを回すことで、従来の3〜4倍の検証速度を実現する。</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-num">Skill 04</div>
+          <h4>📊 Storytelling with Data</h4>
+          <p>定量・定性データを統合し、意思決定者が「腹落ち」できる形にまとめる力。リサーチで得た知見をビジュアルと言葉で伝え、組織を動かす。AIが分析を支援できても、「誰に何を伝えるか」の判断は人間が行う。</p>
+        </div>
+      </div>
+
+      <div class="skill-card" style="margin-bottom:20px;">
+        <div class="skill-num">Skill 05</div>
+        <h4>🔄 Continuous Learning（継続的学習）</h4>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">調査によると93%のデザイナーがAIトレーニングを受講済みという結果が出ており、学習すること自体はすでに前提条件になっている。重要なのは「学び続ける姿勢」そのものだ。AIツールは毎月進化する。特定のツールの使い方より、「新しいツールをどう習得するか」のメタスキルが価値になる。</p>
+      </div>
+
+      <h2 class="section-title">3つの必要な実務力（現場の視点から）</h2>
+
+      <div class="card">
+        <h3><span class="icon">🗣️</span> 考え、判断し、伝えられる力</h3>
+        <p>デザインは目的を達成するためのプロセス。そのプロセスに理由がなければ、モノづくりとして成立しない。「なぜこのようにしたか」を言語化し、クライアントや上司を説得できることが、実務での信頼につながる。感覚だけでなく、<strong>理由を言葉にできること</strong>。</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">❤️</span> 感情を汲み取る力</h3>
+        <p>デザインは情報を並べる作業ではなく、人の心の動きを設計する仕事だ。AIは過去のデータをもとに提案するが、目の前のターゲットの気持ちを読み取ることはできない。「この人は今、どんな気持ちでこの画面を見ているのか」を想像する力こそ、人にしかできない視点だ。</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">🛠️</span> AIを道具として使いこなす力</h3>
+        <p>AIはIllustratorやFigmaと同じ「道具」だ。道具を使いこなすには、基礎の理解が必要になる。アイデアの壁打ちに使う、たたき台を速く作る、時間を短縮して磨き込みに集中する。<strong>主体は常に自分であること</strong>が、AIとうまく付き合うための原則になる。</p>
+      </div>
+
+      <div class="highlight-box purple">
+        <strong>人間とAIのコラボが最大の成果を生む：</strong><br>
+        AIが量（スピード・バリエーション）を担い、デザイナーが質（判断・文脈・感情）を担う。この役割分担を意識して実践することが、今のデザイナーに求められる最も重要なスキルセットだ。
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section" id="quiz-3">
+        <div class="quiz-title">🧠 理解度チェック</div>
+        <div class="quiz-subtitle">Chapter 4 の内容を確認しましょう</div>
+
+        <div class="quiz-question" id="q3-0">
+          <div class="question-text">Q1. 「Context Framing」とは何を指しますか？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(3,0,false,this)">デザインのフレームやモックアップを作成するスキル</button>
+            <button class="option-btn" onclick="answer(3,0,true,this)">問題の背景を言語化し「何を解くべきか」を定義する力</button>
+            <button class="option-btn" onclick="answer(3,0,false,this)">プレゼンテーションのスライドを作る力</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb3-0-c">✓ 正解！「何を解くべきかを定義する」上流設計こそ、デザイナーのAI時代における最重要スキルのひとつです。</div>
+          <div class="quiz-feedback wrong" id="fb3-0-w">× 不正解。Context Framingは問題の文脈を明確にし、「そもそも何を解くか」を定義する能力です。</div>
+        </div>
+
+        <div class="quiz-question" id="q3-1">
+          <div class="question-text">Q2. AI-Augmented Prototypingにおいて、デザイナーが担う役割はどれですか？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(3,1,false,this)">AIを使って完成度の高いUIをゼロから生成する</button>
+            <button class="option-btn" onclick="answer(3,1,false,this)">プロトタイプを紙に描いてからデジタル化する</button>
+            <button class="option-btn" onclick="answer(3,1,true,this)">AIが生成した初期モックを批評・改善し、人間の洞察で質を担保する</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb3-1-c">✓ 正解！AIに量を任せ、デザイナーが「この判断は正しいか」を批評・改善することで、高速かつ高品質なプロトタイピングが実現します。</div>
+          <div class="quiz-feedback wrong" id="fb3-1-w">× 不正解。AIが初期生成を担い、デザイナーは批評・改善で質を担保するという協業関係が重要です。</div>
+        </div>
+
+        <div class="quiz-question" id="q3-2">
+          <div class="question-text">Q3. AI時代にデザイナーがAIを使う際の基本原則は？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(3,2,false,this)">すべてをAIに任せて効率を最大化する</button>
+            <button class="option-btn" onclick="answer(3,2,false,this)">AIを使わずに手作業にこだわる</button>
+            <button class="option-btn" onclick="answer(3,2,true,this)">基礎を理解した上でAIを道具として使い、主体は常に自分が持つ</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb3-2-c">✓ 正解！「主体は自分」という姿勢が、AIに使われるのではなくAIを使いこなすデザイナーへの分岐点です。</div>
+          <div class="quiz-feedback wrong" id="fb3-2-w">× 不正解。AIはあくまで道具。基礎理解の上で、主体的に使いこなすことが重要です。</div>
+        </div>
+
+        <div class="quiz-score" id="score-3">
+          <div class="score-num" id="score-num-3">0/3</div>
+          <div class="score-label">Chapter 4 スコア</div>
+          <div class="score-msg" id="score-msg-3"></div>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-ghost" onclick="goToChapter(2)">← 前へ</button>
+        <button class="btn btn-primary" onclick="goToChapter(4)">次のChapterへ →</button>
+      </div>
+    </div>
+
+    <!-- Chapter 5 -->
+    <div class="chapter" id="chapter-4">
+      <div class="chapter-header">
+        <div class="chapter-tag">Chapter 05 / 5</div>
+        <h1>キャリアパスの再設計<br>── 3つの進化の方向</h1>
+        <p class="chapter-lead">「デザイナー」というタイトルにとどまらず、職種を越境して介在価値を高める時代。現場から見えてきた3つの進化の方向性。</p>
+      </div>
+
+      <h2 class="section-title">3つのキャリアパス</h2>
+
+      <div class="career-path">
+        <div class="career-icon">🧩</div>
+        <div>
+          <div class="career-tag">Path 01</div>
+          <h4>デザイナーの PdM化</h4>
+          <p>デザイン思考やユーザー理解の深さは、プロダクトの方向性を決定する上で強力な武器になる。デザインリード→シニアデザイナーのキャリアを積んだ先に、事業責任を持つPdMへ移行するパスが今後増えていく。AIによる高速検証を武器にしながら、ビジネス成果にコミットメントするタイプ。<strong>デザイン×ビジネス</strong>の掛け算で価値を出す。</p>
+        </div>
+      </div>
+
+      <div class="career-path">
+        <div class="career-icon">💻</div>
+        <div>
+          <div class="career-tag">Path 02</div>
+          <h4>デザインエンジニア化</h4>
+          <p>AIによるコーディングのコモディティ化で、デザインから実装（特にフロント実装）まで一気通貫でこなすデザイナーが増えてくる。デザイナーの悩みである「実装してもらわないとデリバリーできない」を自ら解消できる。ジュニアデザイナーでも早期から取り組める。<strong>デザイン×エンジニアリング</strong>で、プロダクト改善をワンストップで担う。</p>
+        </div>
+      </div>
+
+      <div class="career-path">
+        <div class="career-icon">🏢</div>
+        <div>
+          <div class="career-tag">Path 03</div>
+          <h4>ドメインエキスパート経由のデザイナー</h4>
+          <p>「急がば回れ」の戦略。一度デザイナーから外れ、ユーザーとの接点が多い職種（CS・営業など）を経験してから、デザイナーとして戻る。生の「一次情報」に触れた経験が、審美眼やユーザー理解を深める。<strong>ドメイン知識×デザイン</strong>の掛け算で、専門的な領域で圧倒的な価値を発揮する。</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">2026年以降に求められるマインドセット</h2>
+
+      <div class="card">
+        <h3><span class="icon">🔭</span> 「デザイナー」の定義を広げる</h3>
+        <p>デザイナーの仕事の定義を抽象的に言えば、<strong>「人と目的のあいだにあるギャップを埋めること」</strong>だ。顧客とプロダクトのあいだ、従業員のミッションと日々の業務のあいだ、経営の意思と現場の動きのあいだ。そこに生まれるズレを最も良い形に翻訳する。</p>
+        <p>だからデザインはUIだけの仕事じゃない。プロダクトの骨格にも、カスタマーサクセスにも、組織にも、事業構造にも効く。</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">⚖️</span> NN/G が示す「生き残る実践者」の姿</h3>
+        <p>「2026年に活躍する実践者は<em>deep thinkers（深く考える人）</em>だ。ユーザーの問題を深く理解し、戦略的にそれを解いてビジネス目標を達成する。このマインドセットは常にトッププレイヤーを区別してきたが、今や例外ではなく期待値になっている。」</p>
+        <p>成功する実践者は<strong>リサーチ・ステークホルダーマネジメント・リーダーシップ・デザインクラフト</strong>という広いツールボックスを持ち、継続的に新しいツール（AIとの協業・AIエクスペリエンス設計・サービスデザイン）を加え続ける。</p>
+      </div>
+
+      <div class="highlight-box orange">
+        <strong>AIは「デザイナーの仕事を奪う」のではなく：</strong><br>
+        「AIを使いこなすライバルに置き換えられる」のだ。だからこそ、AIを恐れるのではなく、<strong>AIを味方につけ、学び、試し、AI時代のデザイナーとして進化し続ける。</strong>
+      </div>
+
+      <!-- Final Quiz -->
+      <div class="quiz-section" id="quiz-4">
+        <div class="quiz-title">🏆 最終理解度チェック</div>
+        <div class="quiz-subtitle">全Chapterの総まとめ問題です</div>
+
+        <div class="quiz-question" id="q4-0">
+          <div class="question-text">Q1. 「デザイナーのPdM化」パスが有効な理由として最も適切なものは？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(4,0,false,this)">PdMはデザイナーより給与が高いから</button>
+            <button class="option-btn" onclick="answer(4,0,true,this)">デザイン思考とユーザー理解の深さが、プロダクト方向性の決定において強力な武器になるから</button>
+            <button class="option-btn" onclick="answer(4,0,false,this)">PdMはAIに代替されにくいから</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb4-0-c">✓ 正解！デザイナーが持つ「ユーザー起点の思考」は、事業責任を担うポジションでも圧倒的な武器になります。</div>
+          <div class="quiz-feedback wrong" id="fb4-0-w">× 不正解。給与や代替リスクではなく、「ユーザー理解の深さ」がプロダクト方向性の決定に活きます。</div>
+        </div>
+
+        <div class="quiz-question" id="q4-1">
+          <div class="question-text">Q2. AI時代におけるデザイナーの本質的な役割を一言で表すとしたら？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(4,1,false,this)">見た目を作る専門家</button>
+            <button class="option-btn" onclick="answer(4,1,false,this)">AIツールを最も速く使いこなす人</button>
+            <button class="option-btn" onclick="answer(4,1,true,this)">人と目的のあいだにあるギャップを埋め、業務理解を体験として翻訳する人</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb4-1-c">✓ 正解！「翻訳者」としての役割。ギャップを見つけ、抽象化し、最良の体験として落とし込む。これがAI時代のデザイナーの核心です。</div>
+          <div class="quiz-feedback wrong" id="fb4-1-w">× 不正解。AI時代のデザイナーは「人と目的のギャップを埋める翻訳者」としての役割が本質です。</div>
+        </div>
+
+        <div class="quiz-question" id="q4-2">
+          <div class="question-text">Q3. NN/Gが「2026年に活躍する実践者」の特徴として挙げたものは？</div>
+          <div class="options">
+            <button class="option-btn" onclick="answer(4,2,false,this)">最新のAIツールを最初に試す人</button>
+            <button class="option-btn" onclick="answer(4,2,true,this)">深く考え、ユーザー問題を戦略的に解き、ビジネス目標を達成するdeep thinker</button>
+            <button class="option-btn" onclick="answer(4,2,false,this)">複数のデザインツールを使いこなせる人</button>
+          </div>
+          <div class="quiz-feedback correct" id="fb4-2-c">✓ 正解！「Deep thinker」であること。テンプレートをこなすのではなく、問題の本質を深く理解して戦略的に解く人が生き残ります。</div>
+          <div class="quiz-feedback wrong" id="fb4-2-w">× 不正解。ツールより「深く考える思考力」。NN/Gはdeep thinkersこそが活躍する実践者だと述べています。</div>
+        </div>
+
+        <div class="quiz-score" id="score-4">
+          <div class="score-num" id="score-num-4">0/3</div>
+          <div class="score-label">Chapter 5 スコア</div>
+          <div class="score-msg" id="score-msg-4"></div>
+        </div>
+      </div>
+
+      <div class="ref-list">
+        <strong>参考資料：</strong><br>
+        • <a href="https://note.com/99997373/n/n783fe5e270a0" target="_blank">AI時代、プロダクトデザイナーはどう生きるか？</a><br>
+        • <a href="https://blog.btrax.com/jp/a-designer-2/" target="_blank">AI時代に淘汰されるデザイナーと進化を続けるデザイナーの分岐点 — btrax</a><br>
+        • <a href="https://note.righttouch.co.jp/n/nb83395a024b0" target="_blank">AI時代の開発で発揮される「デザイナー」の真価 — RightTouch</a><br>
+        • <a href="https://info.winschool.jp/detail486/" target="_blank">生成AI時代にデザインを学ぶ意味ってあるの？— Winスクール</a><br>
+        • <a href="https://www.nngroup.com/articles/state-of-ux-2026/" target="_blank">State of UX 2026: Design Deeper to Differentiate — Nielsen Norman Group</a><br>
+        • <a href="https://uxdesign.cc/10-ux-design-shifts-you-cant-ignore-in-2026-8f0da1c6741d" target="_blank">10 UX design shifts you can't ignore in 2026 — UX Collective</a>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-ghost" onclick="goToChapter(3)">← 前へ</button>
+        <button class="btn btn-primary" onclick="showCompletion()">完了画面へ →</button>
+      </div>
+    </div>
+
+    <!-- Completion -->
+    <div class="chapter" id="chapter-complete">
+      <div class="completion">
+        <span class="completion-badge">🎓</span>
+        <h2>学習完了おめでとうございます！</h2>
+        <p>全5章を通じて、AI時代のデザイナーが直面する現実と、生き残り・進化するための具体的な方向性を学びました。</p>
+
+        <div class="final-score-grid" id="final-score-grid">
+        <div class="final-score-item">
+          <div class="fsi-chapter">Ch.1</div>
+          <div class="fsi-score ok">0/3</div>
+        </div>
+        <div class="final-score-item">
+          <div class="fsi-chapter">Ch.2</div>
+          <div class="fsi-score ok">0/3</div>
+        </div>
+        <div class="final-score-item">
+          <div class="fsi-chapter">Ch.3</div>
+          <div class="fsi-score ok">0/3</div>
+        </div>
+        <div class="final-score-item">
+          <div class="fsi-chapter">Ch.4</div>
+          <div class="fsi-score ok">0/3</div>
+        </div>
+        <div class="final-score-item">
+          <div class="fsi-chapter">Ch.5</div>
+          <div class="fsi-score ok">0/3</div>
+        </div></div>
+
+        <div class="highlight-box purple" style="text-align:left;max-width:500px;margin:0 auto 24px;">
+          <strong>あなたへのメッセージ：</strong><br>
+          AIを恐れるのではなく、<strong>AIを使いこなす側へ進化し続けること</strong>。作る速度ではなく、<strong>何を作るべきかを定義し、なぜそうするかを説明し、人の感情を動かせること</strong>。それがAI時代のデザイナービジョンです。
+        </div>
+
+        <button class="btn btn-primary" onclick="restart()" style="margin-right:12px;">最初から復習する</button>
+        <button class="btn btn-ghost" onclick="goToChapter(0)">Chapter 1 へ戻る</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // State
+  let currentChapter = 0;
+  const totalChapters = 5;
+  const scores = [0,0,0,0,0];
+  const maxScores = [3,3,3,3,3];
+  const completedChapters = new Set();
+  const answeredQ = {}; // track which questions answered
+
+  function goToChapter(n) {
+    // Hide all
+    document.querySelectorAll('.chapter').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(c => c.classList.remove('active'));
+
+    // Show target
+    document.getElementById('chapter-' + n).classList.add('active');
+    document.getElementById('nav-' + n).classList.add('active');
+
+    currentChapter = n;
+    updateProgress();
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Close sidebar on mobile
+    if (window.innerWidth <= 768) {
+      document.getElementById('sidebar').classList.remove('open');
+    }
+  }
+
+  function updateProgress() {
+    const done = completedChapters.size;
+    const pct = Math.round((done / totalChapters) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function answer(chapter, qIndex, isCorrect, btn) {
+    const key = chapter + '-' + qIndex;
+    if (answeredQ[key]) return;
+    answeredQ[key] = true;
+
+    const qEl = document.getElementById('q' + chapter + '-' + qIndex);
+    qEl.classList.add('answered');
+
+    // Style buttons
+    const allBtns = qEl.querySelectorAll('.option-btn');
+    allBtns.forEach(b => {
+      if (b === btn) {
+        b.classList.add(isCorrect ? 'correct' : 'wrong');
+      } else if (isCorrect === false && b.onclick.toString().includes('true')) {
+        b.classList.add('show-correct');
+      }
+    });
+
+    // Show feedback
+    if (isCorrect) {
+      scores[chapter]++;
+      document.getElementById('fb' + chapter + '-' + qIndex + '-c').style.display = 'block';
+    } else {
+      document.getElementById('fb' + chapter + '-' + qIndex + '-w').style.display = 'block';
+    }
+
+    // Check if all questions in chapter answered
+    checkChapterComplete(chapter);
+  }
+
+  function checkChapterComplete(chapter) {
+    const qs = document.querySelectorAll('#quiz-' + chapter + ' .quiz-question');
+    let allAnswered = true;
+    qs.forEach((q, i) => {
+      if (!answeredQ[chapter + '-' + i]) allAnswered = false;
+    });
+
+    if (allAnswered) {
+      completedChapters.add(chapter);
+      document.getElementById('nav-' + chapter).classList.add('done');
+      const numEl = document.getElementById('nav-' + chapter).querySelector('.nav-num');
+      numEl.textContent = '✓';
+
+      // Show score
+      const scoreEl = document.getElementById('score-' + chapter);
+      scoreEl.style.display = 'block';
+      const s = scores[chapter];
+      const m = maxScores[chapter];
+      document.getElementById('score-num-' + chapter).textContent = s + '/' + m;
+
+      const msgs = ['もう一度内容を確認してみましょう。', 'いい感じです！もう少し掘り下げると完璧です。', '全問正解！素晴らしい理解度です！'];
+      const msgIdx = s === m ? 2 : s >= m-1 ? 1 : 0;
+      document.getElementById('score-msg-' + chapter).textContent = msgs[msgIdx];
+
+      updateProgress();
+    }
+  }
+
+  function showCompletion() {
+    document.querySelectorAll('.chapter').forEach(c => c.classList.remove('active'));
+    document.getElementById('chapter-complete').classList.add('active');
+
+    // Build final score grid
+    const grid = document.getElementById('final-score-grid');
+    grid.innerHTML = '';
+    for (let i = 0; i < totalChapters; i++) {
+      const s = scores[i];
+      const m = maxScores[i];
+      const cls = s === m ? 'perfect' : s >= m-1 ? 'good' : 'ok';
+      grid.innerHTML += `
+        <div class="final-score-item">
+          <div class="fsi-chapter">Ch.${i+1}</div>
+          <div class="fsi-score ${cls}">${s}/${m}</div>
+        </div>`;
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function restart() {
+    // Reset state
+    Object.keys(answeredQ).forEach(k => delete answeredQ[k]);
+    for (let i = 0; i < totalChapters; i++) scores[i] = 0;
+    completedChapters.clear();
+
+    // Reset UI
+    document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('answered'));
+    document.querySelectorAll('.option-btn').forEach(b => {
+      b.classList.remove('correct','wrong','show-correct');
+    });
+    document.querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+    document.querySelectorAll('.quiz-score').forEach(s => s.style.display = 'none');
+    document.querySelectorAll('.nav-item').forEach((n, i) => {
+      n.classList.remove('done');
+      if (i < totalChapters) n.querySelector('.nav-num').textContent = i+1;
+    });
+
+    goToChapter(0);
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+
+  // Init
+  updateProgress();
+</script>
+
+
+</body></html>
